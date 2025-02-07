@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream Checker</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+      flex-direction: column;
+    }
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+    .subtext {
+      font-size: 1.2rem;
+      color: #ffcc00;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    input {
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #00ffcc;
+      border-radius: 5px;
+      width: 80%;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+    }
+    input::placeholder {
+      color: #aaa;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background: #00ffcc;
+      color: #000;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #00cca3;
+    }
+    .message {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #fff;
+      text-shadow: 0 0 5px #00ffcc;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeIn 0.5s forwards;
+    }
+    .emoji {
+      font-size: 2rem;
+    }
+    .science-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #ccc;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes laugh {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    .laughing-emoji {
+      display: inline-block;
+      animation: laugh 1s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="science-icon">⚛️</div>
+    <h1>What's Your Stream?</h1>
+    <div class="subtext">A Science Student is Watching You 👀</div>
+    <input type="text" id="streamInput" placeholder="Enter your stream" onkeypress="handleInput(event)">
+    <button onclick="checkStream()">Submit</button>
+    <div id="message" class="message"></div>
+  </div>
+  <div class="footer">Created by Vinay</div>
+  <script>
+    function handleInput(event) {
+      if (event.key === 'Enter') {
+        checkStream();
+      }
+    }
+    function checkStream() {
+      const stream = document.getElementById('streamInput').value.trim().toLowerCase();
+      const messageElement = document.getElementById('message');
+      if (stream === 'commerce') {
+        messageElement.innerHTML = `
+          <span class="emoji laughing-emoji">😂</span> 
+          HELLO, HERE ARE YOUR PARENTS FROM SCIENCE! 
+          <span class="emoji">👨‍🔬👩‍🔬</span><br>
+          <small>(Don't worry, we still love you... kind of.)</small>
+        `;
+      } else if (stream === 'science') {
+        messageElement.innerHTML = `
+          <span class="emoji">🧪</span> 
+          Welcome to the elite club! <span class="emoji">🚀</span><br>
+          <small>(At least someone chose the right path.)</small>
+        `;
+      } else if (stream === 'arts') {
+        messageElement.innerHTML = `
+          <span class="emoji">🎨</span> 
+          Oh! Arts, huh? That's... creative. <span class="emoji">😏</span><br>
+          <small>(But seriously, are you sure you're not a commerce student in disguise?)</small>
+        `;
+      } else {
+        messageElement.innerHTML = `
+          <span class="emoji">❓</span> 
+          Hmm... never heard of that stream. Try again! <span class="emoji">🤨</span>
+        `;
+      }
+      messageElement.style.opacity = "1";
+    }
+  </script>
+</body>
+</html>
